@@ -13,6 +13,8 @@ public class Patient {
 	private Date dateOfBirth;
 	@OneToMany(cascade = {CascadeType.PERSIST})
     private List<Exam> exams;
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    private List<Protocol> protocols;
 
 	protected Patient() {
 	}
@@ -22,6 +24,7 @@ public class Patient {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.exams = new ArrayList<Exam>();
+        this.protocols = new ArrayList<Protocol>();
     }
 
     public long getId() {
