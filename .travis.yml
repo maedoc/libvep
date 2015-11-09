@@ -1,0 +1,7 @@
+language: java
+sudo: required
+install:
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install openjdk-8-jdk maven
+script:
+  - mvn test
