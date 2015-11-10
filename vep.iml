@@ -37,5 +37,6 @@
     <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:5.0.3.Final" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:9.4-1205-jdbc42" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch:0.1.53" level="project" />
   </component>
 </module>

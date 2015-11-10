@@ -33,8 +33,15 @@
 			<version>9.4-1205-jdbc42</version>
 		</dependency>
 
-		<!-- TODO niftilib.sourceforge.net -->
-		<!-- TODO imagej for dicom -->
+        <!-- BSD style license -->
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.53</version>
+		</dependency>
+
+		<!-- TODO niftilib.sourceforge.net, unknown license -->
+		<!-- TODO imagej for dicom, public domain -->
 	</dependencies>
 
     <build>
