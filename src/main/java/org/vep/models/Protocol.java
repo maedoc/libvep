@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mw on 11/9/15.
+ * Protocol is a series of subjects for specific purpose, may 
  */
 
 @Entity

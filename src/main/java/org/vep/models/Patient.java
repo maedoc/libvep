@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Patient")
 public class Patient {
 	@Id @GeneratedValue private long id;
 	private String firstName, lastName;

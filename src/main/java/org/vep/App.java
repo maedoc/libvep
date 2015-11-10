@@ -14,7 +14,7 @@ public class App
         for (Patient patient : dao.getPatients())
             System.out.println("patient " + patient.getLastName() +  ", "
                                           + patient.getFirstName());
-        dao.bye();
+        dao.close();
         System.out.println( "Hello World!" );
     }
 }

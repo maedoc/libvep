@@ -16,24 +16,27 @@ public class DAO {
 
     public DAO() {
         logger = Logger.getLogger("org.vep.DAO");
-        entityManagerFactory = Persistence.createEntityManagerFactory("vep");
+        if (entityManagerFactory==null)
+            entityManagerFactory = Persistence.createEntityManagerFactory("vep");
+        entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public void bye() {
-        entityManagerFactory.close();
+    public void close() {
+        entityManager.close();
     }
 
     public List<Patient> getPatients() {
-        EntityManager em = entityManagerFactory.createEntityManager();
-        em.getTransaction().begin();
+        entityManager.getTransaction().begin();
         logger.info("entered tx");
-        List<Patient> patients = em.createQuery("from Patient", Patient.class).getResultList();
+        List<Patient> patients = entityManager
+                .createQuery("from Patient", Patient.class).getResultList();
         logger.info("found " + patients.size() + " patients");
-        em.getTransaction().commit();
-        em.close();
+        entityManager.getTransaction().commit();
+        entityManager.close();
         logger.info("exited tx");
         return patients;
     }
 
-    private EntityManagerFactory entityManagerFactory;
+    private static EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 }
