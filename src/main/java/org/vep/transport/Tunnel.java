@@ -1,11 +1,12 @@
 package org.vep.transport;
 
 /**
- * Created by mw on 11/10/15.
+ * Tunnel describes a tunnel to / from local port from / to remote port.
+ *
  */
-class Tunnel {
+public class Tunnel {
 
-    public enum Direction { Forward, Reverse };
+    public enum Direction { Forward, Reverse }
 
     private final Direction direction;
     private final int localPort, remotePort;

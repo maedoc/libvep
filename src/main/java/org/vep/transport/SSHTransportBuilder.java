@@ -8,6 +8,7 @@ import com.jcraft.jsch.UserInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * Build a Transport over SSH, using JSch.
@@ -52,7 +53,7 @@ public class SSHTransportBuilder implements Transport.TransportBuilder {
 
     // TODO convenience methods for common cases
 
-    public Transport build() throws TransportException {
+    public Transport build() throws Exception {
         try {
             auth.setupJSch(jSch);
             session = this.jSch.getSession(connection.getUser(), connection.getHost(), connection.getPort());
@@ -63,7 +64,7 @@ public class SSHTransportBuilder implements Transport.TransportBuilder {
         } catch (Exception e) {
             String msg = "unable to build SSH transport: " + e;
             logger.warning(msg);
-            throw new TransportException();
+            throw e;
         }
         return new SSHTransport(this);
     }
@@ -106,7 +107,7 @@ public class SSHTransportBuilder implements Transport.TransportBuilder {
                 }
 
                 public boolean promptPassword(String s) {
-                    return false;
+                    return true;
                 }
 
                 public boolean promptPassphrase(String s) {
@@ -114,11 +115,11 @@ public class SSHTransportBuilder implements Transport.TransportBuilder {
                 }
 
                 public boolean promptYesNo(String s) {
-                    return false;
+                    return true;
                 }
 
                 public void showMessage(String s) {
-
+                    JOptionPane.showMessageDialog(null, s);
                 }
             });
         }
@@ -153,11 +154,11 @@ public class SSHTransportBuilder implements Transport.TransportBuilder {
                 }
 
                 public boolean promptPassphrase(String s) {
-                    return false;
+                    return true;
                 }
 
                 public boolean promptYesNo(String s) {
-                    return false;
+                    return true;
                 }
 
                 public void showMessage(String s) {

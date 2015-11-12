@@ -9,9 +9,13 @@ public interface Transport {
 
     interface TransportBuilder {
         void addTunnel(Tunnel tunnel);
-        Transport build() throws TransportException;
+        Transport build() throws Exception;
     }
 
-    void putFile(File localFile, File remoteFile) throws TransportException;
-    void getFile(File remoteFile, File localFile) throws TransportException;
+    void putFile(File localFile, File remoteFile) throws Exception;
+    void getFile(File remoteFile, File localFile) throws Exception;
+
+    boolean remoteFileExists(File remoteFile) throws Exception;
+    
+    void close();
 }
