@@ -40,7 +40,7 @@ public class SSHTransport implements Transport {
             if (c != 'C')
                 break;
 
-            assert in.read(buf, 0, 5) == 4;
+            assert in.read(buf, 0, 5) == 5;
 
             long fileSize = 0L;
             while (true) {
