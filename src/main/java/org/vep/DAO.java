@@ -5,6 +5,8 @@ import org.vep.models.Patient;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.persistence.spi.PersistenceProvider;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -16,8 +18,18 @@ public class DAO {
 
     public DAO() {
         logger = Logger.getLogger("org.vep.DAO");
-        if (entityManagerFactory==null)
-            entityManagerFactory = Persistence.createEntityManagerFactory("vep");
+        if (entityManagerFactory==null) {
+            logger.info("creating entity manager factory");
+            try {
+                entityManagerFactory = Persistence.createEntityManagerFactory("vep");
+            } catch (PersistenceException e) {
+                PersistenceProvider hibernate = new org.hibernate.jpa.HibernatePersistenceProvider();
+                entityManagerFactory = hibernate.createEntityManagerFactory("vep", null);
+            }
+        } else {
+            logger.info("using existing entity manager factory");
+        }
+        logger.info("creating entity manager");
         entityManager = entityManagerFactory.createEntityManager();
     }
 

@@ -14,14 +14,14 @@ public class Protocol {
     @GeneratedValue private long id;
     private String name;
     @OneToMany(cascade = {CascadeType.PERSIST})
-    private List<Patient> exams;
+    private List<Patient> patients;
 
     public Protocol() {
     }
 
     public Protocol(String name) {
         this.name = name;
-        this.exams = new ArrayList<Patient>();
+        this.patients = new ArrayList<Patient>();
     }
 
     public long getId() {
@@ -40,11 +40,11 @@ public class Protocol {
         this.name = name;
     }
 
-    public List<Patient> getExams() {
-        return exams;
+    public List<Patient> getPatients() {
+        return patients;
     }
 
-    public void setExams(List<Patient> exams) {
-        this.exams = exams;
+    public void setPatients(List<Patient> exams) {
+        this.patients = exams;
     }
 }
