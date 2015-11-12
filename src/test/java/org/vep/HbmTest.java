@@ -7,10 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.vep.models.Exam;
 import org.vep.models.ExamType;
 import org.vep.models.Patient;
@@ -20,7 +17,13 @@ public class HbmTest {
 	private EntityManagerFactory entityManagerFactory;
 
 	@Before public void setup() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("vep");
+		boolean haveConnection = true;
+		try {
+			entityManagerFactory = Persistence.createEntityManagerFactory("vep");
+		} catch (Exception e) {
+			haveConnection = false;
+			Assume.assumeTrue("assume have database connection", haveConnection);
+		}
 	}
 
 	@After public void cleanUp() throws Exception {
